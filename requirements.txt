@@ -6,3 +6,6 @@ pandas
 sqlalchemy
 pydantic
 pydantic-settings
+streamlit
+plotly
+requests
