@@ -6,7 +6,6 @@ import os
 class Database:
     def __init__(self, db_path: str = None):
         if db_path is None:
-            # Pega o caminho absoluto do banco.db na raiz do projeto
             root_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
             self.db_path = os.path.join(root_dir, "banco.db")
         else:
@@ -20,6 +19,10 @@ class Database:
 
     def execute_query(self, query: str) -> List[Dict[str, Any]]:
         """Executa uma query SELECT e retorna os resultados como uma lista de dicionários."""
+        query_check = query.strip().upper()
+        if not query_check.startswith("SELECT") and not query_check.startswith("WITH"):
+            raise ValueError("Apenas comandos SELECT são permitidos por segurança.")
+            
         conn = self.get_connection()
         try:
             cursor = conn.cursor()

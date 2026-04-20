@@ -17,15 +17,12 @@ class QueryResponse(BaseModel):
 @router.post("/analyze", response_model=QueryResponse)
 async def analyze_ecommerce_data(request: QueryRequest):
     try:
-        # Gera o SQL
         ai_response = agent.generate_sql(request.prompt)
         sql = ai_response.get("sql")
         thought = ai_response.get("thought")
         
-        #Executa no SQLite
         results = db.execute_query(sql)
         
-        # Analisa os resultados
         analysis = agent.analyze_results(request.prompt, sql, results)
         
         return QueryResponse(

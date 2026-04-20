@@ -3,13 +3,11 @@ import requests
 import pandas as pd
 import plotly.express as px
 
-# Configuração da Página
 st.set_page_config(page_title="GenAI E-Commerce Assistant", layout="wide")
 
 st.title("🚀 Rocket Lab: Agente GenAI de E-Commerce")
 st.markdown("---")
 
-# Barra Lateral com Exemplos
 st.sidebar.header("Sugestões de Perguntas")
 examples = [
     "Quais são os 10 produtos mais vendidos?",
@@ -20,7 +18,6 @@ examples = [
     "% de pedidos entregues no prazo por estado."
 ]
 
-# Input do Usuário
 user_input = st.text_input("Faça uma pergunta sobre a base de dados:", placeholder="Ex: Qual a categoria com mais avaliações negativas?")
 
 if st.button("Analisar") or user_input:
@@ -29,7 +26,6 @@ if st.button("Analisar") or user_input:
     else:
         with st.spinner("O Agente está consultando o banco de dados..."):
             try:
-                # Chama a API do Backend
                 response = requests.post("http://localhost:8000/api/analyze", json={"prompt": user_input})
                 
                 if response.status_code == 200:
@@ -37,7 +33,6 @@ if st.button("Analisar") or user_input:
                     
                     st.success("Análise Concluída!")
                     
-                    # Layout em Colunas
                     col1, col2 = st.columns([1, 1])
                     
                     with col1:
@@ -54,7 +49,6 @@ if st.button("Analisar") or user_input:
                             df = pd.DataFrame(data["results"])
                             st.dataframe(df)
                             
-                            # Gráfico Automático (Se houver colunas numéricas e uma categórica)
                             if len(df.columns) >= 2:
                                 try:
                                     # Tenta inferir um gráfico (se houver pelo menos uma coluna numérica)
@@ -74,6 +68,5 @@ if st.button("Analisar") or user_input:
             except Exception as e:
                 st.error(f"Não foi possível conectar ao backend. Certifique-se de que o uvicorn está rodando.\nErro: {e}")
 
-# Footer
 st.markdown("---")
 st.caption("Copyright © 2026 Visagio | Rocket Lab")
