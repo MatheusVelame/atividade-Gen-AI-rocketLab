@@ -66,4 +66,3 @@ O agente está treinado para responder sobre:
 - **Consumidores:** (Ex: Ticket médio por estado, volume de pedidos).
 
 ---
-**Copyright © 2026 Visagio. Todos os direitos reservados.**

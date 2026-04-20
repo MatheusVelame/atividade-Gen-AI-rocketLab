@@ -10,15 +10,23 @@ st.markdown("---")
 
 st.sidebar.header("Sugestões de Perguntas")
 examples = [
-    "Quais são os 10 produtos mais vendidos?",
-    "Qual a receita total por categoria de produto?",
-    "Quantidade de pedidos por status.",
-    "Qual o estado com maior volume de pedidos?",
-    "Média de avaliação por vendedor (top 10).",
-    "% de pedidos entregues no prazo por estado."
+    "Top 10 produtos mais vendidos",
+    "Receita total por categoria de produto",
+    "Quantidade de pedidos por status",
+    "% de pedidos entregues no prazo por estado dos consumidores",
+    "Média de avaliação geral dos pedidos",
+    "Média de avaliação por vendedor (top 10)",
+    "Estados com maior volume de pedidos e maior ticket médio",
+    "Estados com maior atraso",
+    "Produtos mais vendidos por estado",
+    "Categorias com maior taxa de avaliação negativa"
 ]
 
-user_input = st.text_input("Faça uma pergunta sobre a base de dados:", placeholder="Ex: Qual a categoria com mais avaliações negativas?")
+for ex in examples:
+    if st.sidebar.button(ex):
+        st.session_state.query = ex
+
+user_input = st.text_input("Faça uma pergunta sobre a base de dados:", placeholder="Ex: Qual a categoria com mais avaliações negativas?", value=st.session_state.get("query", ""))
 
 if st.button("Analisar") or user_input:
     if not user_input:
@@ -69,4 +77,3 @@ if st.button("Analisar") or user_input:
                 st.error(f"Não foi possível conectar ao backend. Certifique-se de que o uvicorn está rodando.\nErro: {e}")
 
 st.markdown("---")
-st.caption("Copyright © 2026 Visagio | Rocket Lab")
