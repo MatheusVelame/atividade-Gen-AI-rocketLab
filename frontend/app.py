@@ -28,7 +28,7 @@ for ex in examples:
 
 user_input = st.text_input("Faça uma pergunta sobre a base de dados:", placeholder="Ex: Qual a categoria com mais avaliações negativas?", value=st.session_state.get("query", ""))
 
-if st.button("Analisar") or user_input:
+if st.button("Analisar"):
     if not user_input:
         st.warning("Por favor, digite uma pergunta.")
     else:
