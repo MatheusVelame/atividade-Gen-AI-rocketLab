@@ -22,6 +22,7 @@ Desenvolvido para a **Atividade GenAI - Visagio | Rocket Lab 2026**.
 ### 1. Pré-requisitos
 - Ter o Python instalado.
 - Ter uma chave de API do Google Gemini.
+- **IMPORTANTE:** Ter o arquivo `banco.db` (fornecido na atividade) na raiz deste projeto.
 
 ### 2. Configuração do Ambiente
 Clone o repositório e crie um ambiente virtual:

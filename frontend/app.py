@@ -59,7 +59,6 @@ if st.button("Analisar") or user_input:
                             
                             if len(df.columns) >= 2:
                                 try:
-                                    # Tenta inferir um gráfico (se houver pelo menos uma coluna numérica)
                                     num_cols = df.select_dtypes(include=['number']).columns
                                     cat_cols = df.select_dtypes(include=['object']).columns
                                     

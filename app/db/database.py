@@ -12,6 +12,8 @@ class Database:
             self.db_path = db_path
 
     def get_connection(self):
+        if not os.path.exists(self.db_path):
+            raise FileNotFoundError(f"Arquivo de banco de dados não encontrado em: {self.db_path}. Certifique-se de baixar o 'banco.db' e colocá-lo na raiz do projeto.")
         conn = sqlite3.connect(self.db_path)
         conn.row_factory = sqlite3.Row
         return conn
