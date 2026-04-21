@@ -27,7 +27,7 @@ Desenvolvido para a **Atividade GenAI - Visagio | Rocket Lab 2026**.
 Clone o repositório e crie um ambiente virtual:
 ```bash
 # Criar ambiente virtual
-python3 -m venv venv
+python -m venv venv
 
 # Ativar ambiente (Linux/macOS)
 source venv/bin/activate
