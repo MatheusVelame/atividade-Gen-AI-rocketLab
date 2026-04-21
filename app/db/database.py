@@ -12,13 +12,11 @@ class Database:
             self.db_path = db_path
 
     def get_connection(self):
-        """Retorna uma conexão bruta com o SQLite como solicitado na atividade."""
         conn = sqlite3.connect(self.db_path)
         conn.row_factory = sqlite3.Row
         return conn
 
     def execute_query(self, query: str) -> List[Dict[str, Any]]:
-        """Executa uma query SELECT e retorna os resultados como uma lista de dicionários."""
         query_check = query.strip().upper()
         if not query_check.startswith("SELECT") and not query_check.startswith("WITH"):
             raise ValueError("Apenas comandos SELECT são permitidos por segurança.")
@@ -35,7 +33,6 @@ class Database:
             conn.close()
 
     def get_schema(self) -> str:
-        """Retorna o esquema de todas as tabelas para alimentar o contexto do Agente."""
         conn = self.get_connection()
         cursor = conn.cursor()
         cursor.execute("SELECT name FROM sqlite_master WHERE type='table';")

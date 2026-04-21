@@ -32,16 +32,23 @@ python3 -m venv venv
 # Ativar ambiente (Linux/macOS)
 source venv/bin/activate
 
+# Ativar ambiente (Windows)
+venv\Scripts\activate
+
 # Instalar dependências
 pip install -r requirements.txt
 ```
 
 ### 3. Variáveis de Ambiente
-Renomeie o arquivo `.env.example` para `.env` e adicione sua chave de API:
+Crie o arquivo `.env` a partir do exemplo e adicione sua chave de API:
+```bash
+cp .env.example .env
+```
+Edite o arquivo `.env`:
 ```text
 GEMINI_API_KEY=SUA_CHAVE_AQUI
 DATABASE_URL=sqlite:///banco.db
-MODEL_NAME=gemini-2.0-flash-lite  # Ou gemini-2.5-flash conforme disponibilidade
+MODEL_NAME=gemini-2.5-flash-lite
 ```
 
 ### 4. Executando a Aplicação
@@ -57,6 +64,10 @@ uvicorn app.main:app --reload
 streamlit run frontend/app.py
 ```
 Acesse a interface em `http://localhost:8501`.
+
+### 5. Documentação da API (Swagger)
+Com o backend rodando, você pode acessar a documentação interativa da API (Swagger UI) em:
+`http://localhost:8000/docs`
 
 ## 📊 Categorias de Análise Suportadas
 O agente está treinado para responder sobre:

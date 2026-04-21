@@ -56,7 +56,6 @@ Formato de Saída esperado (JSON):
         )
 
     def generate_sql(self, user_query: str) -> dict:
-        """Transforma a linguagem natural em um comando SQL."""
         config = types.GenerateContentConfig(
             system_instruction=self._get_system_instruction(),
             temperature=0.0,
@@ -68,7 +67,6 @@ Formato de Saída esperado (JSON):
         return json.loads(response.text)
 
     def analyze_results(self, user_query: str, sql: str, results: list) -> str:
-        """Gera uma explicação em linguagem natural baseada nos resultados do banco."""
         config = types.GenerateContentConfig(
             system_instruction="Você é um analista que interpreta resultados de banco de dados e os explica de forma clara para um gestor.",
             temperature=0.5
